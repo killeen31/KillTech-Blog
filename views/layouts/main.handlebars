@@ -4,41 +4,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fund My Project!</title>
+  <title>Tech Blog</title>
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <span role="img" aria-label="money">💸</span>
-        <a href="/">Fund My Project!</a>
-      </h1>
-      <nav>
-        <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button class="no-button" id="logout">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </nav>
+    <header style="background-color: #38302F; padding: 55px; color: white;">
+        <nav>
+            <div>
+                <ul style="list-style: none; display: inline-flex;">
+                    <a href="/" style="text-decoration: none;"><li style="padding-left: 10px; color: white;">Home</li></a>
+                    <a href="/dashboard" style="text-decoration: none;"><li style="padding-left: 10px; color: white;">Dashboard</li></a>
+                    {{#if loggedIn}}
+                    <a style="text-decoration: none;"><li style="padding-left: 10px; color: white;"><button id="logout" class="btn-danger rounded p-.5" style="width: ">Log Out</button></li></a>
+                    {{else}}
+                    {{!-- <a href="/signup" style="text-decoration: none;"><li style="padding-left: 10px; color: white;">Sign Up</li></a> --}}
+                    <a href="/login" style="text-decoration: none;"><li style="padding-left: 10px; color: white;"><button class="btn-success rounded p-1" style="width: 80px;">Login</button></li></a>
+                    {{/if}}
+                </ul>
+            </div>
+            <h2 style="color: #38302f; border: 3px solid black; display: inline-block; padding: 7px; border-radius: 7px; 
+            background-color: #D1DAD3; box-shadow: 5px 5px #726A69; margin-left: 2.5rem">
+            The Tech Blog</h2>
+        </nav>
     </header>
-    <main class="container container-fluid mt-5">
-      <!-- Render the sub layout -->
-      {{{ body }}}
+    
+    <main style="min-height: 90vh;">
+
+        {{{ body }}}
+
     </main>
-    <footer>
-      
+    
+    
+    <footer style="text-align: center; background-color: #38302F; color: white; position: sticky; width: 100%; margin-bottom: -16px;">
+        <div>
+            <p>
+            <a href="/" style="text-decoration: none; color: white;">homepage</a>{{#if loggedIn}} | 
+            <a href="/dashboard/" style="text-decoration: none; color: white;">dashboard</a> | 
+            <a href="/dashboard/create/" style="text-decoration: none; color: white;">create new post</a>
+            {{else}}
+             | <a href="/login/" style="text-decoration: none; color: white;">login</a>
+            {{/if}}
+            </p>
+        </div>
+
+        <div class="row-is-full content has-text-centered">
+            <p>
+            <strong>Tech Blog</strong> by <a href="https://github.com/abalcs" style="text-decoration: none; color: white;">Alan Balcom</a> | source code:
+            <a href="https://github.com/abalcs/tech-blog" style="text-decoration: none; color: white;"><i class="fab fa-github"></i></a> |  
+            <a href="mailto:abalcom23@gmail.com" style="text-decoration: none; color: white;"><i class="far fa-envelope"></i></a>
+            </p>
+        </div>
     </footer>
-  </div>
+    
+    {{#if loggedIn}}
+        <script src="/javascript/logout.js"></script>
+    {{/if}}
 
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
+
 </body>
-
 </html>
